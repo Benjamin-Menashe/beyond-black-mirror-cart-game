@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { getItemsByCategory, getItemById } from '@/data/items';
 import ItemSelector from './ItemSelector';
@@ -43,9 +44,9 @@ const BudgetCalculator: React.FC = () => {
 
   const { totalSpent, remainingBudget, selectedItemsDetails, selectedItemsWithCategories } = useMemo(() => {
     const itemsWithCategories = [
-      selectedItems.recommended ? { item: getItemById(selectedItems.recommended), category: 'recommended' as const } : null,
-      selectedItems['thought-provoking'] ? { item: getItemById(selectedItems['thought-provoking']), category: 'thought-provoking' as const } : null,
       selectedItems.personal ? { item: getItemById(selectedItems.personal), category: 'personal' as const } : null,
+      selectedItems['thought-provoking'] ? { item: getItemById(selectedItems['thought-provoking']), category: 'thought-provoking' as const } : null,
+      selectedItems.recommended ? { item: getItemById(selectedItems.recommended), category: 'recommended' as const } : null,
     ].filter(Boolean);
 
     const items = itemsWithCategories.map(item => item!.item).filter(Boolean);
@@ -127,15 +128,15 @@ ${selectedItemsWithCategories.map(({ item, category }) =>
           </p>
         </div>
 
-        {/* Item Selectors */}
+        {/* Item Selectors - Reordered: Personal (left), Thought-provoking (middle), Recommended (right) */}
         <div className="grid lg:grid-cols-3 gap-6 mb-8">
           <ItemSelector
-            category="recommended"
-            items={recommendedItems}
-            selectedItemId={selectedItems.recommended}
-            onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
-            categoryLabel="פרק מומלץ"
-            categoryIcon={<Star className="w-6 h-6 text-purple-600" />}
+            category="personal"
+            items={personalItems}
+            selectedItemId={selectedItems.personal}
+            onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
+            categoryLabel="פרק עם חיבור אישי"
+            categoryIcon={<Heart className="w-6 h-6 text-purple-600" />}
           />
 
           <ItemSelector
@@ -148,12 +149,12 @@ ${selectedItemsWithCategories.map(({ item, category }) =>
           />
 
           <ItemSelector
-            category="personal"
-            items={personalItems}
-            selectedItemId={selectedItems.personal}
-            onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
-            categoryLabel="פרק עם חיבור אישי"
-            categoryIcon={<Heart className="w-6 h-6 text-purple-600" />}
+            category="recommended"
+            items={recommendedItems}
+            selectedItemId={selectedItems.recommended}
+            onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
+            categoryLabel="פרק מומלץ"
+            categoryIcon={<Star className="w-6 h-6 text-purple-600" />}
           />
         </div>
 
@@ -194,7 +195,7 @@ ${selectedItemsWithCategories.map(({ item, category }) =>
           {selectedItemsWithCategories.length > 0 ? (
             <div className="space-y-3">
               {selectedItemsWithCategories.map(({ item, category }) => (
-                <div key={item!.id} className="flex items-center justify-between p-3 bg-white border border-black rounded-lg">
+                <div key={`${category}-${item!.id}`} className="flex items-center justify-between p-3 bg-white border border-black rounded-lg">
                   <div className="flex items-center gap-3">
                     {categoryIcons[category]}
                     <div>
