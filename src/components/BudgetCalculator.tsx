@@ -71,11 +71,16 @@ const BudgetCalculator: React.FC = () => {
       return;
     }
 
-    const summaryText = `מבעד למראה השחורה - הבחירה שלי:
+    // Reorder for copy: recommended first, then thought-provoking, then personal
+    const orderedItems = [
+      selectedItems.recommended ? { item: getItemById(selectedItems.recommended), category: 'recommended' as const } : null,
+      selectedItems['thought-provoking'] ? { item: getItemById(selectedItems['thought-provoking']), category: 'thought-provoking' as const } : null,
+      selectedItems.personal ? { item: getItemById(selectedItems.personal), category: 'personal' as const } : null,
+    ].filter(Boolean);
 
-${selectedItemsWithCategories.map(({ item, category }) => 
-  `${categoryLabels[category]}: ${item!.name} - $${item!.price.toFixed(2)}`
-).join('\n')}
+    const summaryText = `${orderedItems.map(({ item, category }) => 
+      `${categoryLabels[category]}: ${item!.name} - $${item!.price.toFixed(2)}`
+    ).join('\n')}
 
 סה"כ: $${totalSpent.toFixed(2)}
 תקציב שנותר: $${remainingBudget.toFixed(2)}`;
