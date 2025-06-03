@@ -13,14 +13,14 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
   const percentageUsed = (spent / totalBudget) * 100;
 
   return (
-    <div className="bg-gray-200 border border-black rounded-xl shadow-lg p-6">
+    <div className="bg-white border border-black rounded-xl shadow-lg p-6">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-black flex items-center gap-2">
           <DollarSign className="w-5 h-5 text-purple-600" />
           מעקב תקציב
         </h2>
         <div className="text-sm text-gray-700">
-          תקציב כולל: ${totalBudget.toFixed(2)}
+          תקציב כולל: <span className="text-black font-semibold">${totalBudget.toFixed(2)}</span>
         </div>
       </div>
 
@@ -42,7 +42,7 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
 
         {/* Budget Details */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-purple-100 border border-black rounded-lg p-4">
+          <div className="bg-gray-100 border border-black rounded-lg p-4">
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-black">הוצא</span>
               <TrendingUp className="w-4 h-4 text-purple-600" />
@@ -52,7 +52,7 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
             </div>
           </div>
 
-          <div className={`rounded-lg p-4 border border-black ${isOverBudget ? 'bg-red-100' : 'bg-purple-100'}`}>
+          <div className={`rounded-lg p-4 border border-black ${isOverBudget ? 'bg-red-100' : 'bg-gray-100'}`}>
             <div className="flex items-center justify-between">
               <span className={`text-sm font-medium ${isOverBudget ? 'text-red-600' : 'text-black'}`}>
                 נותר
@@ -69,7 +69,7 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
         {isOverBudget && (
           <div className="bg-red-100 border border-red-600 rounded-lg p-3">
             <p className="text-red-600 text-sm font-medium">
-              ⚠️ חרגתם מהתקציב ב ${Math.abs(remaining).toFixed(2)}
+              ⚠️ חרגתם מהתקציב ב <span className="text-black">${Math.abs(remaining).toFixed(2)}</span>
             </p>
           </div>
         )}
@@ -77,7 +77,7 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
         {remaining > 0 && remaining < 5 && (
           <div className="bg-yellow-100 border border-yellow-600 rounded-lg p-3">
             <p className="text-yellow-700 text-sm font-medium">
-              💡 נותרו לכם ${remaining.toFixed(2)} להוצאה
+              💡 נותרו לכם <span className="text-black">${remaining.toFixed(2)}</span> להוצאה
             </p>
           </div>
         )}

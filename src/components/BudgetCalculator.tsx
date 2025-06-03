@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { getItemsByCategory, getItemById } from '@/data/items';
 import ItemSelector from './ItemSelector';
@@ -57,7 +56,7 @@ const BudgetCalculator: React.FC = () => {
   const personalItems = getItemsByCategory('personal');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-gray-100 to-purple-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-gray-50 to-purple-100 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header with Logo */}
         <div className="text-center mb-8">
@@ -81,12 +80,12 @@ const BudgetCalculator: React.FC = () => {
         {/* Item Selectors */}
         <div className="grid lg:grid-cols-3 gap-6 mb-8">
           <ItemSelector
-            category="personal"
-            items={personalItems}
-            selectedItemId={selectedItems.personal}
-            onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
-            categoryLabel="פרק עם חיבור אישי"
-            categoryIcon={<Heart className="w-6 h-6 text-purple-600" />}
+            category="recommended"
+            items={recommendedItems}
+            selectedItemId={selectedItems.recommended}
+            onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
+            categoryLabel="פרק מומלץ"
+            categoryIcon={<Star className="w-6 h-6 text-purple-600" />}
           />
 
           <ItemSelector
@@ -99,16 +98,16 @@ const BudgetCalculator: React.FC = () => {
           />
 
           <ItemSelector
-            category="recommended"
-            items={recommendedItems}
-            selectedItemId={selectedItems.recommended}
-            onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
-            categoryLabel="פרק מומלץ"
-            categoryIcon={<Star className="w-6 h-6 text-purple-600" />}
+            category="personal"
+            items={personalItems}
+            selectedItemId={selectedItems.personal}
+            onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
+            categoryLabel="פרק עם חיבור אישי"
+            categoryIcon={<Heart className="w-6 h-6 text-purple-600" />}
           />
         </div>
 
-        {/* Budget Display - Moved Below Selectors */}
+        {/* Budget Display - Below Selectors */}
         <div className="mb-8">
           <BudgetDisplay 
             totalBudget={TOTAL_BUDGET}
@@ -118,13 +117,13 @@ const BudgetCalculator: React.FC = () => {
         </div>
 
         {/* Summary and Reset */}
-        <div className="bg-gray-200 border border-black rounded-xl shadow-lg p-6 mb-8">
+        <div className="bg-white border border-black rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-semibold text-black">סיכום הבחירה</h3>
             <Button 
               onClick={resetSelections}
               variant="outline"
-              className="flex items-center gap-2 hover:bg-purple-200 border-black text-black hover:text-black"
+              className="flex items-center gap-2 hover:bg-purple-50 border-black text-black hover:text-black"
             >
               <RefreshCw className="w-4 h-4" />
               איפוס הכל
@@ -134,7 +133,7 @@ const BudgetCalculator: React.FC = () => {
           {selectedItemsDetails.length > 0 ? (
             <div className="space-y-3">
               {selectedItemsDetails.map((item, index) => (
-                <div key={item!.id} className="flex items-center justify-between p-3 bg-purple-100 border border-black rounded-lg">
+                <div key={item!.id} className="flex items-center justify-between p-3 bg-gray-100 border border-black rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${
                       index === 0 ? 'bg-purple-600' : 
@@ -142,13 +141,13 @@ const BudgetCalculator: React.FC = () => {
                     }`} />
                     <span className="font-medium text-black">{item!.name}</span>
                   </div>
-                  <span className="font-semibold text-purple-600">${item!.price.toFixed(2)}</span>
+                  <span className="font-semibold text-black">${item!.price.toFixed(2)}</span>
                 </div>
               ))}
               <div className="border-t border-black pt-3 mt-3">
                 <div className="flex items-center justify-between font-bold text-lg">
                   <span className="text-black">סה"כ:</span>
-                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-purple-600'}>
+                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-black'}>
                     ${totalSpent.toFixed(2)}
                   </span>
                 </div>
