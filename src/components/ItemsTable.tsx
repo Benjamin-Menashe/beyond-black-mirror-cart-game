@@ -43,7 +43,7 @@ const ItemsTable: React.FC = () => {
   return (
     <div className="bg-white border border-black rounded-xl shadow-lg p-6">
       <h2 className="text-xl font-semibold text-black mb-4 flex items-center gap-2">
-        📋 כל הפרקים הזמינים
+        📋 מחירון פרקים
       </h2>
       <div className="overflow-x-auto">
         <Table>
