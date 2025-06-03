@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { getItemsByCategory, getItemById } from '@/data/items';
 import ItemSelector from './ItemSelector';
@@ -133,8 +132,39 @@ const BudgetCalculator: React.FC = () => {
           </p>
         </div>
 
-        {/* Item Selectors - Reordered: Personal (left), Thought-provoking (middle), Recommended (right) */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+        {/* Item Selectors - Different order for mobile vs desktop */}
+        {/* Mobile Layout (vertical stack) - Recommended first */}
+        <div className="lg:hidden space-y-6 mb-8">
+          <ItemSelector
+            category="recommended"
+            items={recommendedItems}
+            selectedItemId={selectedItems.recommended}
+            onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
+            categoryLabel="פרק מומלץ"
+            categoryIcon={<Star className="w-6 h-6 text-purple-600" />}
+          />
+
+          <ItemSelector
+            category="thought-provoking"
+            items={thoughtProvokingItems}
+            selectedItemId={selectedItems['thought-provoking']}
+            onItemSelect={(itemId) => handleItemSelect('thought-provoking', itemId)}
+            categoryLabel="פרק מעורר מחשבה"
+            categoryIcon={<Brain className="w-6 h-6 text-purple-600" />}
+          />
+
+          <ItemSelector
+            category="personal"
+            items={personalItems}
+            selectedItemId={selectedItems.personal}
+            onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
+            categoryLabel="פרק עם חיבור אישי"
+            categoryIcon={<Heart className="w-6 h-6 text-purple-600" />}
+          />
+        </div>
+
+        {/* Desktop Layout (grid) - Personal, Thought-provoking, Recommended */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 mb-8">
           <ItemSelector
             category="personal"
             items={personalItems}
