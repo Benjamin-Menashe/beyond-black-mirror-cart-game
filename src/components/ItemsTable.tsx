@@ -41,33 +41,33 @@ const ItemsTable: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white border border-black rounded-xl shadow-lg p-6">
-      <h2 className="text-xl font-semibold text-black mb-4 flex items-center gap-2">
+    <div className="bg-white border border-black rounded-xl shadow-lg p-3 md:p-6">
+      <h2 className="text-lg md:text-xl font-semibold text-black mb-3 md:mb-4 flex items-center gap-2">
         📋 מחירון פרקים
       </h2>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-100 border-black">
-              <TableHead className="text-black font-semibold border-r border-black">עונה</TableHead>
-              <TableHead className="text-black font-semibold border-r border-black">פרק</TableHead>
-              <TableHead className="text-black font-semibold border-r border-black">שם הפרק</TableHead>
-              <TableHead className="text-black font-semibold border-r border-black">שם באנגלית</TableHead>
-              <TableHead className="text-black font-semibold text-right">מחיר</TableHead>
+              <TableHead className="text-black font-semibold border-r border-black w-12 px-1 text-center text-xs md:text-sm">עונה</TableHead>
+              <TableHead className="text-black font-semibold border-r border-black w-12 px-1 text-center text-xs md:text-sm">פרק</TableHead>
+              <TableHead className="text-black font-semibold border-r border-black px-2 text-xs md:text-sm">שם הפרק</TableHead>
+              <TableHead className="text-black font-semibold border-r border-black px-2 text-xs md:text-sm hidden sm:table-cell">שם באנגלית</TableHead>
+              <TableHead className="text-black font-semibold text-right px-2 text-xs md:text-sm">מחיר</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {episodes.map((episode, index) => (
               <TableRow key={index} className="hover:bg-purple-50 border-b border-gray-300">
-                <TableCell className="text-black border-r border-gray-300 text-center">
+                <TableCell className="text-black border-r border-gray-300 text-center w-12 px-1 text-xs md:text-sm">
                   {episode.season}
                 </TableCell>
-                <TableCell className="text-black border-r border-gray-300 text-center">
+                <TableCell className="text-black border-r border-gray-300 text-center w-12 px-1 text-xs md:text-sm">
                   {episode.episode}
                 </TableCell>
-                <TableCell className="text-black border-r border-gray-300">{episode.hebrewName}</TableCell>
-                <TableCell className="text-black border-r border-gray-300">{episode.englishName}</TableCell>
-                <TableCell className="text-right font-semibold text-black">
+                <TableCell className="text-black border-r border-gray-300 px-2 text-xs md:text-sm">{episode.hebrewName}</TableCell>
+                <TableCell className="text-black border-r border-gray-300 px-2 text-xs md:text-sm hidden sm:table-cell">{episode.englishName}</TableCell>
+                <TableCell className="text-right font-semibold text-black px-2 text-xs md:text-sm">
                   ${episode.price.toFixed(2)}
                 </TableCell>
               </TableRow>
