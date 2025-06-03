@@ -59,14 +59,15 @@ const BudgetCalculator: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-gray-50 to-purple-200 p-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header with Logo Space */}
+        {/* Header with Logo */}
         <div className="text-center mb-8">
           <div className="mb-6">
-            {/* Logo placeholder - replace src with your logo */}
             <div className="flex justify-center mb-4">
-              <div className="w-20 h-20 bg-purple-900 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                LOGO
-              </div>
+              <img 
+                src="/lovable-uploads/ffffe944-ea09-41fa-bc10-43132dded8f3.png" 
+                alt="מבעד למראה השחורה לוגו" 
+                className="w-20 h-20 rounded-lg object-contain" 
+              />
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
