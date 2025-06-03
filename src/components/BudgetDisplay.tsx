@@ -13,10 +13,10 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
   const percentageUsed = (spent / totalBudget) * 100;
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
-          <DollarSign className="w-5 h-5 text-blue-600" />
+          <DollarSign className="w-5 h-5 text-purple-600" />
           Budget Tracker
         </h2>
         <div className="text-sm text-gray-500">
@@ -30,7 +30,7 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div 
               className={`h-3 rounded-full transition-all duration-500 ${
-                isOverBudget ? 'bg-red-500' : percentageUsed > 80 ? 'bg-yellow-500' : 'bg-green-500'
+                isOverBudget ? 'bg-red-500' : percentageUsed > 80 ? 'bg-yellow-500' : 'bg-purple-500'
               }`}
               style={{ width: `${Math.min(percentageUsed, 100)}%` }}
             />
@@ -42,24 +42,24 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
 
         {/* Budget Details */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4">
+          <div className="bg-purple-50 rounded-lg p-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-blue-700">Spent</span>
-              <TrendingUp className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-purple-700">Spent</span>
+              <TrendingUp className="w-4 h-4 text-purple-600" />
             </div>
-            <div className="text-xl font-bold text-blue-800 mt-1">
+            <div className="text-xl font-bold text-purple-800 mt-1">
               ${spent.toFixed(2)}
             </div>
           </div>
 
-          <div className={`rounded-lg p-4 ${isOverBudget ? 'bg-red-50' : 'bg-green-50'}`}>
+          <div className={`rounded-lg p-4 ${isOverBudget ? 'bg-red-50' : 'bg-gray-50'}`}>
             <div className="flex items-center justify-between">
-              <span className={`text-sm font-medium ${isOverBudget ? 'text-red-700' : 'text-green-700'}`}>
+              <span className={`text-sm font-medium ${isOverBudget ? 'text-red-700' : 'text-gray-700'}`}>
                 Remaining
               </span>
-              <TrendingDown className={`w-4 h-4 ${isOverBudget ? 'text-red-600' : 'text-green-600'}`} />
+              <TrendingDown className={`w-4 h-4 ${isOverBudget ? 'text-red-600' : 'text-gray-600'}`} />
             </div>
-            <div className={`text-xl font-bold mt-1 ${isOverBudget ? 'text-red-800' : 'text-green-800'}`}>
+            <div className={`text-xl font-bold mt-1 ${isOverBudget ? 'text-red-800' : 'text-gray-800'}`}>
               ${remaining.toFixed(2)}
             </div>
           </div>

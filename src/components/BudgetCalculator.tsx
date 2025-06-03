@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react';
 import { getItemsByCategory, getItemById } from '@/data/items';
 import ItemSelector from './ItemSelector';
 import BudgetDisplay from './BudgetDisplay';
+import ItemsTable from './ItemsTable';
 import { Star, Brain, Heart, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -56,10 +57,18 @@ const BudgetCalculator: React.FC = () => {
   const personalItems = getItemsByCategory('personal');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 p-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-gray-50 to-purple-100 p-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header with Logo Space */}
         <div className="text-center mb-8">
+          <div className="mb-6">
+            {/* Logo placeholder - replace src with your logo */}
+            <div className="flex justify-center mb-4">
+              <div className="w-20 h-20 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                LOGO
+              </div>
+            </div>
+          </div>
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
             Smart Budget Calculator
           </h1>
@@ -86,7 +95,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems.recommended}
             onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
             categoryLabel="Most Recommended"
-            categoryIcon={<Star className="w-6 h-6 text-yellow-500" />}
+            categoryIcon={<Star className="w-6 h-6 text-purple-500" />}
           />
 
           <ItemSelector
@@ -95,7 +104,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems['thought-provoking']}
             onItemSelect={(itemId) => handleItemSelect('thought-provoking', itemId)}
             categoryLabel="Most Thought-Provoking"
-            categoryIcon={<Brain className="w-6 h-6 text-purple-500" />}
+            categoryIcon={<Brain className="w-6 h-6 text-purple-600" />}
           />
 
           <ItemSelector
@@ -104,18 +113,18 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems.personal}
             onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
             categoryLabel="Most Personal"
-            categoryIcon={<Heart className="w-6 h-6 text-red-500" />}
+            categoryIcon={<Heart className="w-6 h-6 text-purple-700" />}
           />
         </div>
 
         {/* Summary and Reset */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 mb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-semibold text-gray-800">Selection Summary</h3>
             <Button 
               onClick={resetSelections}
               variant="outline"
-              className="flex items-center gap-2 hover:bg-gray-50"
+              className="flex items-center gap-2 hover:bg-purple-50 border-purple-300 text-purple-700"
             >
               <RefreshCw className="w-4 h-4" />
               Reset All
@@ -125,21 +134,21 @@ const BudgetCalculator: React.FC = () => {
           {selectedItemsDetails.length > 0 ? (
             <div className="space-y-3">
               {selectedItemsDetails.map((item, index) => (
-                <div key={item!.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={item!.id} className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${
-                      index === 0 ? 'bg-yellow-500' : 
-                      index === 1 ? 'bg-purple-500' : 'bg-red-500'
+                      index === 0 ? 'bg-purple-500' : 
+                      index === 1 ? 'bg-purple-600' : 'bg-purple-700'
                     }`} />
                     <span className="font-medium text-gray-800">{item!.name}</span>
                   </div>
-                  <span className="font-semibold text-green-600">${item!.price.toFixed(2)}</span>
+                  <span className="font-semibold text-purple-600">${item!.price.toFixed(2)}</span>
                 </div>
               ))}
               <div className="border-t pt-3 mt-3">
                 <div className="flex items-center justify-between font-bold text-lg">
                   <span className="text-gray-800">Total:</span>
-                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-green-600'}>
+                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-purple-600'}>
                     ${totalSpent.toFixed(2)}
                   </span>
                 </div>
@@ -151,6 +160,9 @@ const BudgetCalculator: React.FC = () => {
             </p>
           )}
         </div>
+
+        {/* Items Table */}
+        <ItemsTable />
 
         {/* User Session Info */}
         <div className="mt-6 text-center">
