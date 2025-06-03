@@ -42,18 +42,18 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       </div>
 
       <Select value={selectedItemId || 'no-selection'} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-full h-12 text-left bg-purple-50 border-purple-200 hover:bg-purple-100 transition-colors">
+        <SelectTrigger className="w-full h-12 text-left bg-purple-100 border-purple-300 hover:bg-purple-200 transition-colors">
           <SelectValue placeholder="Select an item...">
             {selectedItem && (
               <div className="flex items-center justify-between w-full">
                 <span className="font-medium">{selectedItem.name}</span>
-                <span className="text-purple-600 font-semibold">${selectedItem.price.toFixed(2)}</span>
+                <span className="text-purple-800 font-semibold">${selectedItem.price.toFixed(2)}</span>
               </div>
             )}
           </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-white border border-purple-200 shadow-xl z-50">
-          <SelectItem value="no-selection" className="text-gray-500 hover:bg-purple-50">
+        <SelectContent className="bg-white border border-purple-300 shadow-xl z-50">
+          <SelectItem value="no-selection" className="text-gray-500 hover:bg-purple-100">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-4 h-4" />
               No item selected
@@ -63,11 +63,11 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
             <SelectItem 
               key={item.id} 
               value={item.id}
-              className="hover:bg-purple-50 cursor-pointer py-3"
+              className="hover:bg-purple-100 cursor-pointer py-3"
             >
               <div className="flex items-center justify-between w-full">
                 <span className="font-medium text-gray-800">{item.name}</span>
-                <span className="text-purple-600 font-semibold ml-4">${item.price.toFixed(2)}</span>
+                <span className="text-purple-800 font-semibold ml-4">${item.price.toFixed(2)}</span>
               </div>
             </SelectItem>
           ))}
@@ -75,10 +75,10 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       </Select>
 
       {selectedItem && (
-        <div className="mt-3 p-3 bg-purple-50 rounded-lg">
+        <div className="mt-3 p-3 bg-purple-100 rounded-lg">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-purple-700">Selected:</span>
-            <span className="text-sm font-bold text-purple-800">${selectedItem.price.toFixed(2)}</span>
+            <span className="text-sm font-medium text-purple-800">Selected:</span>
+            <span className="text-sm font-bold text-purple-900">${selectedItem.price.toFixed(2)}</span>
           </div>
         </div>
       )}

@@ -7,39 +7,46 @@ export interface Item {
 }
 
 export const itemDictionary: Item[] = [
-  // Most Recommended Items
-  { id: 'rec1', name: 'Premium Coffee Beans', price: 8.50, category: 'recommended' },
-  { id: 'rec2', name: 'Wireless Earbuds', price: 12.99, category: 'recommended' },
-  { id: 'rec3', name: 'Organic Honey', price: 6.75, category: 'recommended' },
-  { id: 'rec4', name: 'Bluetooth Speaker', price: 15.00, category: 'recommended' },
-  { id: 'rec5', name: 'Plant-Based Protein Bar', price: 3.25, category: 'recommended' },
-  { id: 'rec6', name: 'Bamboo Water Bottle', price: 9.99, category: 'recommended' },
-  { id: 'rec7', name: 'Artisan Chocolate', price: 7.50, category: 'recommended' },
-  { id: 'rec8', name: 'Herbal Tea Set', price: 11.25, category: 'recommended' },
-
-  // Most Thought-Provoking Items
-  { id: 'think1', name: 'Philosophy Book', price: 14.99, category: 'thought-provoking' },
-  { id: 'think2', name: 'Meditation Cushion', price: 18.00, category: 'thought-provoking' },
-  { id: 'think3', name: 'Puzzle Game', price: 9.50, category: 'thought-provoking' },
-  { id: 'think4', name: 'Journal & Pen Set', price: 12.75, category: 'thought-provoking' },
-  { id: 'think5', name: 'Brain Training Cards', price: 8.99, category: 'thought-provoking' },
-  { id: 'think6', name: 'Mindfulness Guide', price: 6.50, category: 'thought-provoking' },
-  { id: 'think7', name: 'Abstract Art Print', price: 16.25, category: 'thought-provoking' },
-  { id: 'think8', name: 'Science Experiment Kit', price: 13.99, category: 'thought-provoking' },
-
-  // Most Personal Items
-  { id: 'personal1', name: 'Custom Photo Frame', price: 11.99, category: 'personal' },
-  { id: 'personal2', name: 'Personalized Mug', price: 8.75, category: 'personal' },
-  { id: 'personal3', name: 'Handwritten Letter Kit', price: 5.50, category: 'personal' },
-  { id: 'personal4', name: 'Memory Scrapbook', price: 13.50, category: 'personal' },
-  { id: 'personal5', name: 'Custom Keychain', price: 4.99, category: 'personal' },
-  { id: 'personal6', name: 'Personal Care Set', price: 16.99, category: 'personal' },
-  { id: 'personal7', name: 'Favorite Snack Bundle', price: 9.25, category: 'personal' },
-  { id: 'personal8', name: 'Comfort Blanket', price: 19.99, category: 'personal' },
+  // All items can be selected in any category
+  { id: 'item1', name: 'ההמנון הלאומי', price: 7.60, category: 'recommended' },
+  { id: 'item2', name: '15 מיליון נקודות', price: 8.00, category: 'recommended' },
+  { id: 'item3', name: 'תולדות חייך', price: 8.50, category: 'recommended' },
+  { id: 'item4', name: 'תכף אשוב', price: 7.90, category: 'recommended' },
+  { id: 'item5', name: 'דב לבן', price: 8.00, category: 'recommended' },
+  { id: 'item6', name: 'הרגע של וולדו', price: 6.50, category: 'recommended' },
+  { id: 'item7', name: 'חג מולד לבן', price: 9.10, category: 'recommended' },
+  { id: 'item8', name: 'תגובת שרשרת', price: 8.30, category: 'recommended' },
+  { id: 'item9', name: 'נסיעת מבחן', price: 8.00, category: 'recommended' },
+  { id: 'item10', name: 'שתוק ותרקוד', price: 8.40, category: 'recommended' },
+  { id: 'item11', name: 'סאן ג\'וניפרו', price: 8.50, category: 'recommended' },
+  { id: 'item12', name: 'משחקים באש', price: 7.50, category: 'recommended' },
+  { id: 'item13', name: 'השנואים במדינה', price: 8.40, category: 'recommended' },
+  { id: 'item14', name: 'החללית קאליסטר', price: 8.30, category: 'recommended' },
+  { id: 'item15', name: 'ארקאנג\'ל', price: 7.30, category: 'recommended' },
+  { id: 'item16', name: 'קרוקודיל', price: 7.30, category: 'recommended' },
+  { id: 'item17', name: 'Hang the DJ', price: 8.70, category: 'recommended' },
+  { id: 'item18', name: 'מטאלהד', price: 6.60, category: 'recommended' },
+  { id: 'item19', name: 'מוזיאון שחור', price: 8.60, category: 'recommended' },
+  { id: 'item20', name: 'בנדרסנאץ\'', price: 7.10, category: 'recommended' },
+  { id: 'item21', name: 'סטרייקינג וייפרס', price: 6.80, category: 'recommended' },
+  { id: 'item22', name: 'סמית\'רינס', price: 7.50, category: 'recommended' },
+  { id: 'item23', name: 'רייצ\'ל ג\'ק ואשלי טו', price: 6.10, category: 'recommended' },
+  { id: 'item24', name: 'ג\'ואן פשוט איומה', price: 7.40, category: 'recommended' },
+  { id: 'item25', name: 'לוך הנרי', price: 7.30, category: 'recommended' },
+  { id: 'item26', name: 'מעבר לים', price: 7.40, category: 'recommended' },
+  { id: 'item27', name: 'מייזי דיי', price: 5.30, category: 'recommended' },
+  { id: 'item28', name: 'שטן 79', price: 6.70, category: 'recommended' },
+  { id: 'item29', name: 'אנשים פשוטים', price: 8.10, category: 'recommended' },
+  { id: 'item30', name: 'בט נואר', price: 7.20, category: 'recommended' },
+  { id: 'item31', name: 'מלון ריברי', price: 6.70, category: 'recommended' },
+  { id: 'item32', name: 'צעצוע', price: 7.10, category: 'recommended' },
+  { id: 'item33', name: 'הספד', price: 8.10, category: 'recommended' },
+  { id: 'item34', name: 'חללית קליסטר 2', price: 8.10, category: 'recommended' },
 ];
 
 export const getItemsByCategory = (category: Item['category']): Item[] => {
-  return itemDictionary.filter(item => item.category === category);
+  // Return all items since any item can be selected in any category
+  return itemDictionary;
 };
 
 export const getItemById = (id: string): Item | undefined => {

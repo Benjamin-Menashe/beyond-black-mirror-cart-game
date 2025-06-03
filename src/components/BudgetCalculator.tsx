@@ -57,14 +57,14 @@ const BudgetCalculator: React.FC = () => {
   const personalItems = getItemsByCategory('personal');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-gray-50 to-purple-100 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-gray-50 to-purple-200 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header with Logo Space */}
         <div className="text-center mb-8">
           <div className="mb-6">
             {/* Logo placeholder - replace src with your logo */}
             <div className="flex justify-center mb-4">
-              <div className="w-20 h-20 bg-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-20 h-20 bg-purple-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                 LOGO
               </div>
             </div>
@@ -95,7 +95,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems.recommended}
             onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
             categoryLabel="Most Recommended"
-            categoryIcon={<Star className="w-6 h-6 text-purple-500" />}
+            categoryIcon={<Star className="w-6 h-6 text-purple-700" />}
           />
 
           <ItemSelector
@@ -104,7 +104,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems['thought-provoking']}
             onItemSelect={(itemId) => handleItemSelect('thought-provoking', itemId)}
             categoryLabel="Most Thought-Provoking"
-            categoryIcon={<Brain className="w-6 h-6 text-purple-600" />}
+            categoryIcon={<Brain className="w-6 h-6 text-purple-800" />}
           />
 
           <ItemSelector
@@ -113,7 +113,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems.personal}
             onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
             categoryLabel="Most Personal"
-            categoryIcon={<Heart className="w-6 h-6 text-purple-700" />}
+            categoryIcon={<Heart className="w-6 h-6 text-purple-900" />}
           />
         </div>
 
@@ -124,7 +124,7 @@ const BudgetCalculator: React.FC = () => {
             <Button 
               onClick={resetSelections}
               variant="outline"
-              className="flex items-center gap-2 hover:bg-purple-50 border-purple-300 text-purple-700"
+              className="flex items-center gap-2 hover:bg-purple-100 border-purple-400 text-purple-800"
             >
               <RefreshCw className="w-4 h-4" />
               Reset All
@@ -134,21 +134,21 @@ const BudgetCalculator: React.FC = () => {
           {selectedItemsDetails.length > 0 ? (
             <div className="space-y-3">
               {selectedItemsDetails.map((item, index) => (
-                <div key={item!.id} className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+                <div key={item!.id} className="flex items-center justify-between p-3 bg-purple-100 rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${
-                      index === 0 ? 'bg-purple-500' : 
-                      index === 1 ? 'bg-purple-600' : 'bg-purple-700'
+                      index === 0 ? 'bg-purple-700' : 
+                      index === 1 ? 'bg-purple-800' : 'bg-purple-900'
                     }`} />
                     <span className="font-medium text-gray-800">{item!.name}</span>
                   </div>
-                  <span className="font-semibold text-purple-600">${item!.price.toFixed(2)}</span>
+                  <span className="font-semibold text-purple-800">${item!.price.toFixed(2)}</span>
                 </div>
               ))}
               <div className="border-t pt-3 mt-3">
                 <div className="flex items-center justify-between font-bold text-lg">
                   <span className="text-gray-800">Total:</span>
-                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-purple-600'}>
+                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-purple-800'}>
                     ${totalSpent.toFixed(2)}
                   </span>
                 </div>
