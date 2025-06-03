@@ -3,8 +3,9 @@ import { getItemsByCategory, getItemById } from '@/data/items';
 import ItemSelector from './ItemSelector';
 import BudgetDisplay from './BudgetDisplay';
 import ItemsTable from './ItemsTable';
-import { Star, Brain, Heart, RefreshCw } from 'lucide-react';
+import { Star, Brain, Heart, RefreshCw, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 const BudgetCalculator: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<{
@@ -26,13 +27,28 @@ const BudgetCalculator: React.FC = () => {
     }));
   };
 
-  const { totalSpent, remainingBudget, selectedItemsDetails } = useMemo(() => {
-    const items = [
-      selectedItems.recommended ? getItemById(selectedItems.recommended) : null,
-      selectedItems['thought-provoking'] ? getItemById(selectedItems['thought-provoking']) : null,
-      selectedItems.personal ? getItemById(selectedItems.personal) : null,
+  const categoryLabels = {
+    recommended: 'פרק מומלץ',
+    'thought-provoking': 'פרק מעורר מחשבה',
+    personal: 'פרק עם חיבור אישי'
+  };
+
+  const categoryIcons = {
+    recommended: <Star className="w-4 h-4 text-purple-600" />,
+    'thought-provoking': <Brain className="w-4 h-4 text-purple-600" />,
+    personal: <Heart className="w-4 h-4 text-purple-600" />
+  };
+
+  const { toast } = useToast();
+
+  const { totalSpent, remainingBudget, selectedItemsDetails, selectedItemsWithCategories } = useMemo(() => {
+    const itemsWithCategories = [
+      selectedItems.recommended ? { item: getItemById(selectedItems.recommended), category: 'recommended' as const } : null,
+      selectedItems['thought-provoking'] ? { item: getItemById(selectedItems['thought-provoking']), category: 'thought-provoking' as const } : null,
+      selectedItems.personal ? { item: getItemById(selectedItems.personal), category: 'personal' as const } : null,
     ].filter(Boolean);
 
+    const items = itemsWithCategories.map(item => item!.item).filter(Boolean);
     const spent = items.reduce((sum, item) => sum + (item?.price || 0), 0);
     const remaining = TOTAL_BUDGET - spent;
 
@@ -40,8 +56,42 @@ const BudgetCalculator: React.FC = () => {
       totalSpent: spent,
       remainingBudget: remaining,
       selectedItemsDetails: items,
+      selectedItemsWithCategories: itemsWithCategories,
     };
   }, [selectedItems]);
+
+  const copySelectionToClipboard = () => {
+    if (selectedItemsWithCategories.length === 0) {
+      toast({
+        title: "אין בחירות להעתיק",
+        description: "בחרו פרקים תחילה",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const summaryText = `מבעד למראה השחורה - הבחירה שלי:
+
+${selectedItemsWithCategories.map(({ item, category }) => 
+  `${categoryLabels[category]}: ${item!.name} - $${item!.price.toFixed(2)}`
+).join('\n')}
+
+סה"כ: $${totalSpent.toFixed(2)}
+תקציב שנותר: $${remainingBudget.toFixed(2)}`;
+
+    navigator.clipboard.writeText(summaryText).then(() => {
+      toast({
+        title: "הועתק בהצלחה!",
+        description: "סיכום הבחירה הועתק ללוח",
+      });
+    }).catch(() => {
+      toast({
+        title: "שגיאה בהעתקה",
+        description: "לא ניתן להעתיק ללוח כרגע",
+        variant: "destructive",
+      });
+    });
+  };
 
   const resetSelections = () => {
     setSelectedItems({
@@ -56,7 +106,7 @@ const BudgetCalculator: React.FC = () => {
   const personalItems = getItemsByCategory('personal');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-gray-50 to-purple-100 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-gray-100 to-purple-200 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header with Logo */}
         <div className="text-center mb-8">
@@ -117,29 +167,40 @@ const BudgetCalculator: React.FC = () => {
         </div>
 
         {/* Summary and Reset */}
-        <div className="bg-white border border-black rounded-xl shadow-lg p-6 mb-8">
+        <div className="bg-gray-100 border border-black rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-semibold text-black">סיכום הבחירה</h3>
-            <Button 
-              onClick={resetSelections}
-              variant="outline"
-              className="flex items-center gap-2 hover:bg-purple-50 border-black text-black hover:text-black"
-            >
-              <RefreshCw className="w-4 h-4" />
-              איפוס הכל
-            </Button>
+            <div className="flex gap-2">
+              <Button 
+                onClick={copySelectionToClipboard}
+                variant="outline"
+                className="flex items-center gap-2 hover:bg-purple-50 border-black text-black hover:text-black"
+                disabled={selectedItemsWithCategories.length === 0}
+              >
+                <Copy className="w-4 h-4" />
+                העתק
+              </Button>
+              <Button 
+                onClick={resetSelections}
+                variant="outline"
+                className="flex items-center gap-2 hover:bg-purple-50 border-black text-black hover:text-black"
+              >
+                <RefreshCw className="w-4 h-4" />
+                איפוס הכל
+              </Button>
+            </div>
           </div>
 
-          {selectedItemsDetails.length > 0 ? (
+          {selectedItemsWithCategories.length > 0 ? (
             <div className="space-y-3">
-              {selectedItemsDetails.map((item, index) => (
-                <div key={item!.id} className="flex items-center justify-between p-3 bg-gray-100 border border-black rounded-lg">
+              {selectedItemsWithCategories.map(({ item, category }) => (
+                <div key={item!.id} className="flex items-center justify-between p-3 bg-white border border-black rounded-lg">
                   <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full ${
-                      index === 0 ? 'bg-purple-600' : 
-                      index === 1 ? 'bg-purple-500' : 'bg-purple-400'
-                    }`} />
-                    <span className="font-medium text-black">{item!.name}</span>
+                    {categoryIcons[category]}
+                    <div>
+                      <div className="text-sm text-gray-600">{categoryLabels[category]}</div>
+                      <span className="font-medium text-black">{item!.name}</span>
+                    </div>
                   </div>
                   <span className="font-semibold text-black">${item!.price.toFixed(2)}</span>
                 </div>
