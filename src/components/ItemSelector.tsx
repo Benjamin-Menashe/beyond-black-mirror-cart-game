@@ -23,6 +23,14 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
 }) => {
   const selectedItem = items.find(item => item.id === selectedItemId);
 
+  const handleValueChange = (value: string) => {
+    if (value === 'no-selection') {
+      onItemSelect(null);
+    } else {
+      onItemSelect(value);
+    }
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
       <div className="flex items-center gap-3 mb-4">
@@ -33,7 +41,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
         </div>
       </div>
 
-      <Select value={selectedItemId || ''} onValueChange={(value) => onItemSelect(value || null)}>
+      <Select value={selectedItemId || 'no-selection'} onValueChange={handleValueChange}>
         <SelectTrigger className="w-full h-12 text-left bg-purple-50 border-purple-200 hover:bg-purple-100 transition-colors">
           <SelectValue placeholder="Select an item...">
             {selectedItem && (
@@ -45,7 +53,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
           </SelectValue>
         </SelectTrigger>
         <SelectContent className="bg-white border border-purple-200 shadow-xl z-50">
-          <SelectItem value="" className="text-gray-500 hover:bg-purple-50">
+          <SelectItem value="no-selection" className="text-gray-500 hover:bg-purple-50">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-4 h-4" />
               No item selected
