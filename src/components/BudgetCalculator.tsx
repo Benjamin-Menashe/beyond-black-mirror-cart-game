@@ -265,6 +265,16 @@ const BudgetCalculator: React.FC = () => {
           <p className="text-sm text-gray-600">
             made by Benja and Gilad
           </p>
+          <p className="text-sm text-gray-600 mt-1">
+            <a 
+              href="https://open.spotify.com/show/43JmkztYcLZxuCU7D4NtfL" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-purple-600 hover:text-purple-800 underline"
+            >
+              https://open.spotify.com/show/43JmkztYcLZxuCU7D4NtfL
+            </a>
+          </p>
         </div>
       </div>
     </div>
