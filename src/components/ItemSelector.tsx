@@ -32,7 +32,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
   };
 
   return (
-    <div className="bg-gray-800 border border-purple-600 rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-500 transition-all duration-300">
+    <div className="bg-gray-800/80 border border-gray-600 rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-400/50 transition-all duration-300 backdrop-blur-sm">
       <div className="flex items-center gap-3 mb-4">
         {categoryIcon}
         <div>
@@ -42,18 +42,18 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       </div>
 
       <Select value={selectedItemId || 'no-selection'} onValueChange={handleValueChange}>
-        <SelectTrigger className="w-full h-12 text-left bg-purple-900/50 border-purple-600 hover:bg-purple-900/70 transition-colors text-white">
+        <SelectTrigger className="w-full h-12 text-left bg-gray-700/80 border-gray-500 hover:bg-gray-700 transition-colors text-white hover:border-purple-400">
           <SelectValue placeholder="בחירת פרק...">
             {selectedItem && (
               <div className="flex items-center justify-between w-full">
                 <span className="font-medium">{selectedItem.name}</span>
-                <span className="text-purple-200 font-semibold">${selectedItem.price.toFixed(2)}</span>
+                <span className="text-purple-300 font-semibold">${selectedItem.price.toFixed(2)}</span>
               </div>
             )}
           </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-gray-800 border border-purple-600 shadow-xl z-50">
-          <SelectItem value="no-selection" className="text-gray-400 hover:bg-purple-900/50 focus:bg-purple-900/50">
+        <SelectContent className="bg-gray-800 border border-gray-600 shadow-xl z-50">
+          <SelectItem value="no-selection" className="text-gray-400 hover:bg-gray-700 focus:bg-gray-700">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-4 h-4" />
               לא נבחר פרק
@@ -63,11 +63,11 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
             <SelectItem 
               key={item.id} 
               value={item.id}
-              className="hover:bg-purple-900/50 focus:bg-purple-900/50 cursor-pointer py-3 text-white"
+              className="hover:bg-gray-700 focus:bg-gray-700 cursor-pointer py-3 text-white"
             >
               <div className="flex items-center justify-between w-full">
                 <span className="font-medium">{item.name}</span>
-                <span className="text-purple-200 font-semibold ml-4">${item.price.toFixed(2)}</span>
+                <span className="text-purple-300 font-semibold ml-4">${item.price.toFixed(2)}</span>
               </div>
             </SelectItem>
           ))}
@@ -75,10 +75,10 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       </Select>
 
       {selectedItem && (
-        <div className="mt-3 p-3 bg-purple-900/50 border border-purple-600 rounded-lg">
+        <div className="mt-3 p-3 bg-gray-700/50 border border-gray-600 rounded-lg">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-purple-300">נבחר:</span>
-            <span className="text-sm font-bold text-purple-200">${selectedItem.price.toFixed(2)}</span>
+            <span className="text-sm font-medium text-gray-300">נבחר:</span>
+            <span className="text-sm font-bold text-purple-300">${selectedItem.price.toFixed(2)}</span>
           </div>
         </div>
       )}

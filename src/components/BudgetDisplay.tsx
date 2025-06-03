@@ -13,7 +13,7 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
   const percentageUsed = (spent / totalBudget) * 100;
 
   return (
-    <div className="bg-gray-800 border border-purple-600 rounded-xl shadow-lg p-6">
+    <div className="bg-gray-800/80 border border-gray-600 rounded-xl shadow-lg p-6 backdrop-blur-sm">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-white flex items-center gap-2">
           <DollarSign className="w-5 h-5 text-purple-300" />
@@ -42,17 +42,17 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
 
         {/* Budget Details */}
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-purple-900/50 border border-purple-600 rounded-lg p-4">
+          <div className="bg-gray-700/50 border border-gray-600 rounded-lg p-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-purple-200">הוצא</span>
-              <TrendingUp className="w-4 h-4 text-purple-200" />
+              <span className="text-sm font-medium text-gray-300">הוצא</span>
+              <TrendingUp className="w-4 h-4 text-purple-300" />
             </div>
             <div className="text-xl font-bold text-white mt-1">
               ${spent.toFixed(2)}
             </div>
           </div>
 
-          <div className={`rounded-lg p-4 border ${isOverBudget ? 'bg-red-900/50 border-red-600' : 'bg-gray-700 border-gray-600'}`}>
+          <div className={`rounded-lg p-4 border ${isOverBudget ? 'bg-red-900/50 border-red-600' : 'bg-gray-700/50 border-gray-600'}`}>
             <div className="flex items-center justify-between">
               <span className={`text-sm font-medium ${isOverBudget ? 'text-red-300' : 'text-gray-300'}`}>
                 נותר
