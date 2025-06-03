@@ -37,17 +37,17 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
         {categoryIcon}
         <div>
           <h3 className="text-lg font-semibold text-gray-800">{categoryLabel}</h3>
-          <p className="text-sm text-gray-500">Choose one item from this category</p>
+          <p className="text-sm text-gray-500">בחרו פרק אחד מהקטגוריה הזאת</p>
         </div>
       </div>
 
       <Select value={selectedItemId || 'no-selection'} onValueChange={handleValueChange}>
         <SelectTrigger className="w-full h-12 text-left bg-purple-100 border-purple-300 hover:bg-purple-200 transition-colors">
-          <SelectValue placeholder="Select an item...">
+          <SelectValue placeholder="בחירת פרק...">
             {selectedItem && (
               <div className="flex items-center justify-between w-full">
                 <span className="font-medium">{selectedItem.name}</span>
-                <span className="text-purple-800 font-semibold">${selectedItem.price.toFixed(2)}</span>
+                <span className="text-purple-900 font-semibold">${selectedItem.price.toFixed(2)}</span>
               </div>
             )}
           </SelectValue>
@@ -56,7 +56,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
           <SelectItem value="no-selection" className="text-gray-500 hover:bg-purple-100">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-4 h-4" />
-              No item selected
+              לא נבחר פרק
             </div>
           </SelectItem>
           {items.map((item) => (
@@ -67,7 +67,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
             >
               <div className="flex items-center justify-between w-full">
                 <span className="font-medium text-gray-800">{item.name}</span>
-                <span className="text-purple-800 font-semibold ml-4">${item.price.toFixed(2)}</span>
+                <span className="text-purple-900 font-semibold ml-4">${item.price.toFixed(2)}</span>
               </div>
             </SelectItem>
           ))}
@@ -77,7 +77,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       {selectedItem && (
         <div className="mt-3 p-3 bg-purple-100 rounded-lg">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-purple-800">Selected:</span>
+            <span className="text-sm font-medium text-purple-800">נבחר:</span>
             <span className="text-sm font-bold text-purple-900">${selectedItem.price.toFixed(2)}</span>
           </div>
         </div>

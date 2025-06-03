@@ -64,17 +64,16 @@ const BudgetCalculator: React.FC = () => {
           <div className="mb-6">
             {/* Logo placeholder - replace src with your logo */}
             <div className="flex justify-center mb-4">
-              <div className="w-20 h-20 bg-purple-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-20 h-20 bg-purple-900 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                 LOGO
               </div>
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
-            Smart Budget Calculator
+            מבעד למראה השחורה - בחירת פרקים
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Select three items from different categories while staying within your $24 budget. 
-            Make thoughtful choices that balance recommendation, reflection, and personal preference.
+            בחרו 3 פרקים כך שאתם עומדים בתקציב של 24$. נשמח לשמוע מה בחרתם!
           </p>
         </div>
 
@@ -94,7 +93,7 @@ const BudgetCalculator: React.FC = () => {
             items={recommendedItems}
             selectedItemId={selectedItems.recommended}
             onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
-            categoryLabel="Most Recommended"
+            categoryLabel="פרק מומלץ"
             categoryIcon={<Star className="w-6 h-6 text-purple-700" />}
           />
 
@@ -103,7 +102,7 @@ const BudgetCalculator: React.FC = () => {
             items={thoughtProvokingItems}
             selectedItemId={selectedItems['thought-provoking']}
             onItemSelect={(itemId) => handleItemSelect('thought-provoking', itemId)}
-            categoryLabel="Most Thought-Provoking"
+            categoryLabel="פרק מעורר מחשבה"
             categoryIcon={<Brain className="w-6 h-6 text-purple-800" />}
           />
 
@@ -112,7 +111,7 @@ const BudgetCalculator: React.FC = () => {
             items={personalItems}
             selectedItemId={selectedItems.personal}
             onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
-            categoryLabel="Most Personal"
+            categoryLabel="פרק עם חיבור אישי"
             categoryIcon={<Heart className="w-6 h-6 text-purple-900" />}
           />
         </div>
@@ -120,14 +119,14 @@ const BudgetCalculator: React.FC = () => {
         {/* Summary and Reset */}
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold text-gray-800">Selection Summary</h3>
+            <h3 className="text-xl font-semibold text-gray-800">סיכום הבחירה</h3>
             <Button 
               onClick={resetSelections}
               variant="outline"
               className="flex items-center gap-2 hover:bg-purple-100 border-purple-400 text-purple-800"
             >
               <RefreshCw className="w-4 h-4" />
-              Reset All
+              איפוס הכל
             </Button>
           </div>
 
@@ -147,7 +146,7 @@ const BudgetCalculator: React.FC = () => {
               ))}
               <div className="border-t pt-3 mt-3">
                 <div className="flex items-center justify-between font-bold text-lg">
-                  <span className="text-gray-800">Total:</span>
+                  <span className="text-gray-800">סה"כ:</span>
                   <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-purple-800'}>
                     ${totalSpent.toFixed(2)}
                   </span>
@@ -156,7 +155,7 @@ const BudgetCalculator: React.FC = () => {
             </div>
           ) : (
             <p className="text-gray-500 text-center py-8">
-              No items selected yet. Choose one item from each category above.
+              עדיין לא נבחרו פרקים. בחרו פרק אחד מכל קטגוריה למעלה.
             </p>
           )}
         </div>
@@ -164,10 +163,10 @@ const BudgetCalculator: React.FC = () => {
         {/* Items Table */}
         <ItemsTable />
 
-        {/* User Session Info */}
+        {/* Attribution */}
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-500">
-            Each user session is independent. Multiple users can make selections simultaneously.
+            made by Benja and Gilad
           </p>
         </div>
       </div>
