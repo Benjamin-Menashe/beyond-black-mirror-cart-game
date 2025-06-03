@@ -13,22 +13,24 @@ const ItemsTable: React.FC = () => {
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-100 border-black">
-              <TableHead className="text-black font-semibold border-r border-black">שם הפרק</TableHead>
               <TableHead className="text-black font-semibold border-r border-black">עונה</TableHead>
               <TableHead className="text-black font-semibold border-r border-black">פרק</TableHead>
+              <TableHead className="text-black font-semibold border-r border-black">שם הפרק</TableHead>
+              <TableHead className="text-black font-semibold border-r border-black">שם באנגלית</TableHead>
               <TableHead className="text-black font-semibold text-right">מחיר</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {itemDictionary.map((item) => (
               <TableRow key={item.id} className="hover:bg-purple-50 border-b border-gray-300">
-                <TableCell className="text-black border-r border-gray-300">{item.name}</TableCell>
                 <TableCell className="text-black border-r border-gray-300 text-center">
                   {item.season || '-'}
                 </TableCell>
                 <TableCell className="text-black border-r border-gray-300 text-center">
                   {item.episode}
                 </TableCell>
+                <TableCell className="text-black border-r border-gray-300">{item.name}</TableCell>
+                <TableCell className="text-black border-r border-gray-300">{item.nameEnglish}</TableCell>
                 <TableCell className="text-right font-semibold text-black">
                   ${item.price.toFixed(2)}
                 </TableCell>
