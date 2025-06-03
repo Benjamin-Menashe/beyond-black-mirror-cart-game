@@ -57,7 +57,7 @@ const BudgetCalculator: React.FC = () => {
   const personalItems = getItemsByCategory('personal');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-gray-100 to-purple-50 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header with Logo */}
         <div className="text-center mb-8">
@@ -70,24 +70,15 @@ const BudgetCalculator: React.FC = () => {
               />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-4xl font-bold text-black mb-4">
             מבעד למראה השחורה - משחק בחירת הפרקים
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-black max-w-2xl mx-auto">
             בחרו 3 פרקים כך שאתם עומדים בתקציב של 24$. נשמח לשמוע מה בחרתם
           </p>
         </div>
 
-        {/* Budget Display */}
-        <div className="mb-8">
-          <BudgetDisplay 
-            totalBudget={TOTAL_BUDGET}
-            spent={totalSpent}
-            remaining={remainingBudget}
-          />
-        </div>
-
-        {/* Item Selectors - Reversed Order */}
+        {/* Item Selectors */}
         <div className="grid lg:grid-cols-3 gap-6 mb-8">
           <ItemSelector
             category="personal"
@@ -95,7 +86,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems.personal}
             onItemSelect={(itemId) => handleItemSelect('personal', itemId)}
             categoryLabel="פרק עם חיבור אישי"
-            categoryIcon={<Heart className="w-6 h-6 text-purple-400" />}
+            categoryIcon={<Heart className="w-6 h-6 text-purple-600" />}
           />
 
           <ItemSelector
@@ -104,7 +95,7 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems['thought-provoking']}
             onItemSelect={(itemId) => handleItemSelect('thought-provoking', itemId)}
             categoryLabel="פרק מעורר מחשבה"
-            categoryIcon={<Brain className="w-6 h-6 text-purple-300" />}
+            categoryIcon={<Brain className="w-6 h-6 text-purple-600" />}
           />
 
           <ItemSelector
@@ -113,18 +104,27 @@ const BudgetCalculator: React.FC = () => {
             selectedItemId={selectedItems.recommended}
             onItemSelect={(itemId) => handleItemSelect('recommended', itemId)}
             categoryLabel="פרק מומלץ"
-            categoryIcon={<Star className="w-6 h-6 text-purple-200" />}
+            categoryIcon={<Star className="w-6 h-6 text-purple-600" />}
+          />
+        </div>
+
+        {/* Budget Display - Moved Below Selectors */}
+        <div className="mb-8">
+          <BudgetDisplay 
+            totalBudget={TOTAL_BUDGET}
+            spent={totalSpent}
+            remaining={remainingBudget}
           />
         </div>
 
         {/* Summary and Reset */}
-        <div className="bg-gray-800/80 border border-gray-600 rounded-xl shadow-lg p-6 mb-8 backdrop-blur-sm">
+        <div className="bg-gray-200 border border-black rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-semibold text-white">סיכום הבחירה</h3>
+            <h3 className="text-xl font-semibold text-black">סיכום הבחירה</h3>
             <Button 
               onClick={resetSelections}
               variant="outline"
-              className="flex items-center gap-2 hover:bg-purple-500/20 border-gray-500 text-gray-300 hover:text-white hover:border-purple-400"
+              className="flex items-center gap-2 hover:bg-purple-200 border-black text-black hover:text-black"
             >
               <RefreshCw className="w-4 h-4" />
               איפוס הכל
@@ -134,28 +134,28 @@ const BudgetCalculator: React.FC = () => {
           {selectedItemsDetails.length > 0 ? (
             <div className="space-y-3">
               {selectedItemsDetails.map((item, index) => (
-                <div key={item!.id} className="flex items-center justify-between p-3 bg-gray-700/50 border border-gray-600 rounded-lg">
+                <div key={item!.id} className="flex items-center justify-between p-3 bg-purple-100 border border-black rounded-lg">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${
-                      index === 0 ? 'bg-purple-400' : 
-                      index === 1 ? 'bg-purple-300' : 'bg-purple-200'
+                      index === 0 ? 'bg-purple-600' : 
+                      index === 1 ? 'bg-purple-500' : 'bg-purple-400'
                     }`} />
-                    <span className="font-medium text-white">{item!.name}</span>
+                    <span className="font-medium text-black">{item!.name}</span>
                   </div>
-                  <span className="font-semibold text-purple-300">${item!.price.toFixed(2)}</span>
+                  <span className="font-semibold text-purple-600">${item!.price.toFixed(2)}</span>
                 </div>
               ))}
-              <div className="border-t border-gray-600 pt-3 mt-3">
+              <div className="border-t border-black pt-3 mt-3">
                 <div className="flex items-center justify-between font-bold text-lg">
-                  <span className="text-white">סה"כ:</span>
-                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-400' : 'text-purple-300'}>
+                  <span className="text-black">סה"כ:</span>
+                  <span className={totalSpent > TOTAL_BUDGET ? 'text-red-600' : 'text-purple-600'}>
                     ${totalSpent.toFixed(2)}
                   </span>
                 </div>
               </div>
             </div>
           ) : (
-            <p className="text-gray-400 text-center py-8">
+            <p className="text-gray-600 text-center py-8">
               עדיין לא נבחרו פרקים. בחרו פרק אחד מכל קטגוריה למעלה.
             </p>
           )}
@@ -166,7 +166,7 @@ const BudgetCalculator: React.FC = () => {
 
         {/* Attribution */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-600">
             made by Benja and Gilad
           </p>
         </div>
