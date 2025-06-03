@@ -52,7 +52,12 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
             )}
           </SelectValue>
         </SelectTrigger>
-        <SelectContent className="bg-gray-100 border border-black shadow-xl z-50">
+        <SelectContent 
+          className="bg-white border border-black shadow-xl z-50 max-h-60" 
+          side="bottom"
+          align="start"
+          sideOffset={4}
+        >
           <SelectItem value="no-selection" className="text-gray-600 hover:bg-purple-50 focus:bg-purple-50">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-4 h-4" />
