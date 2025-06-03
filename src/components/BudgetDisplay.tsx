@@ -74,10 +74,10 @@ const BudgetDisplay: React.FC<BudgetDisplayProps> = ({ totalBudget, spent, remai
           </div>
         )}
 
-        {remaining > 0 && remaining < 5 && (
+        {remaining > 0 && spent > 0 && (
           <div className="bg-yellow-100 border border-yellow-600 rounded-lg p-3">
             <p className="text-yellow-700 text-sm font-medium">
-              💡 נותרו לכם <span className="text-black">${remaining.toFixed(2)}</span> להוצאה
+              🪙 נותרו לכם <span className="text-black">${remaining.toFixed(2)}</span> לצדקה
             </p>
           </div>
         )}
